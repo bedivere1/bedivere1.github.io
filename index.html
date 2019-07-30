@@ -1,130 +1,177 @@
 <head>
-    <style> body { margin: 0; } </style>
-  
-    <script src="https://unpkg.com/three@0.106.2/build/three.js"></script>
-    <script src="https://unpkg.com/three-spritetext@1.0.6/dist/three-spritetext.min.js"></script>
-  
-    <script src="https://unpkg.com/3d-force-graph@1.50.0/dist/3d-force-graph.min.js"></script>
-    <!--<script src="../../dist/3d-force-graph.js"></script>-->
-  </head>
-  
-  <body>
-    <div id="3d-graph"></div>
-  
-    <script>
-      const Graph = ForceGraph3D()
-        (document.getElementById('3d-graph'))
-          .graphData({
-      nodes: [
-        {
-          id: "เรียนไปทำไม",
-          name: "name1",
-          val: 20,
-          color: "green"
-        },
-        {
-          id: "เคมี",
-          name: "name5",
-          val: 10,
-          color: "red"
-        },
-        {
-          id: "ฟิสิกส์",
-          name: "name2",
-          val: 10,
-          color: "red"
-        },
-        {
-          id: "ชีวะ",
-          name: "name3",
-          val: 10,
-          color: "red"
-        },
-        {
-          id: "เลข",
-          name: "name4",
-          val: 10,
-          color: "red"
-        },
-        {
-          id: "วิศวะ",
-          name: "name4",
-          val: 5,
-          color: "red"
-        },
-        {
-          id: "หมอ",
-          name: "name4",
-          val: 5,
-          color: "red"
-        }
-      ],
-      links: [
-        {
-          source: "เรียนไปทำไม",
-          target: "เคมี",
-          val: 2
-        },
-        {
-          source: "เรียนไปทำไม",
-          target: "ฟิสิกส์",
-          val: 2
-        },
-        {
-          source: "เรียนไปทำไม",
-          target: "ชีวะ",
-          val: 3
-        },
-        {
-          source: "เรียนไปทำไม",
-          target: "เลข",
-          val: 1
-        },
-        { source: "เลข", 
-        target: "วิศวะ", 
-        val: 1 },
-        {
-          source: "ฟิสิกส์",
-          target: "วิศวะ",
-          val: 3
-        },
-        {
-          source: "ชีวะ",
-          target: "หมอ",
-          val: 1
-        },
-        {
-          source: "เลข",
-          target: "หมอ",
-          val: 1
-        },
-        {
-          source: "เคมี",
-          target: "หมอ",
-          val: 1
-        },
-        {
-          source: "เลข",
-          target: "วิศวะ",
-          val: 1
-        }
-      ]
-    })
-          .nodeAutoColorBy('group')
-          .nodeThreeObject(node => {
-            // use a sphere as a drag handle
-            const obj = new THREE.Mesh(
-              new THREE.SphereGeometry(10),
-              new THREE.MeshBasicMaterial({ depthWrite: false, transparent: true, opacity: 0 })
-            );
-            // add text sprite as child
-            const sprite = new SpriteText(node.id);
-            sprite.color = node.color;
-            sprite.textHeight = node.val;
-            obj.add(sprite);
-            return obj;
-          });
-      // Spread nodes a little wider
-      Graph.d3Force('charge').strength(-150);
-    </script>
-  </body>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+
+  <script src="https://unpkg.com/three@0.106.2/build/three.js"></script>
+  <script src="https://unpkg.com/three-spritetext@1.0.6/dist/three-spritetext.min.js"></script>
+
+  <script src="https://unpkg.com/3d-force-graph@1.50.0/dist/3d-force-graph.min.js"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script>
+    const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
+      .graphData({
+        nodes: [
+          { index: 0, id: "เรียนไปทำไม", val: 20, color: "green", level: 1 },
+          { index: 1, id: "ฟิสิกส์", val: 10, color: "red", level: 2 },
+          { index: 2, id: "เคมี", val: 10, color: "red", level: 2 },
+          { index: 3, id: "ชีวะ", val: 10, color: "red", level: 2 },
+          { index: 4, id: "เลข", val: 10, color: "red", level: 2 },
+          { index: 5, id: "สังคม", val: 10, color: "red", level: 2 },
+          { index: 6, id: "ไทย", val: 10, color: "red", level: 2 },
+          { index: 7, id: "English", val: 10, color: "red", level: 2 },
+          { index: 8, id: "วิศวะ", val: 5, color: "red", level: 3 },
+          { index: 9, id: "หมอ", val: 5, color: "red", level: 3 },
+          { index: 10, id: "นักบัญชี", val: 5, color: "red", level: 3 },
+          { index: 11, id: "ครู", val: 5, color: "red", level: 3 },
+          { index: 12, id: "นักเขียน", val: 5, color: "red", level: 3 },
+          { index: 13, id: "rktoe", val: 5, color: "red", level: 3 },
+          { index: 14, id: "rptioeto", val: 5, color: "red", level: 3 },
+          { index: 15, id: "gdfkgpofgkdfpo", val: 5, color: "red", level: 3 },
+          { index: 16, id: "kgdpofgkdfo", val: 5, color: "red", level: 3 },
+          { index: 17, id: "bgokfbgipo", val: 5, color: "red", level: 3 },
+          { index: 18, id: "sdfksdpof", val: 5, color: "red", level: 3 },
+          { index: 19, id: "fgdfgo", val: 5, color: "red", level: 3 },
+          { index: 20, id: "fdgkdfo", val: 5, color: "red", level: 3 }
+        ],
+        links: [
+          { index: 0, source: "ฟิสิกส์", target: "วิศวะ", val: 4.0 },
+          { index: 1, source: "ฟิสิกส์", target: "หมอ", val: 4.0 },
+          { index: 2, source: "ฟิสิกส์", target: "นักบัญชี", val: 1.0 },
+          { index: 3, source: "ฟิสิกส์", target: "ครู", val: 4.0 },
+          { index: 4, source: "ฟิสิกส์", target: "นักเขียน", val: 0.0 },
+          { index: 5, source: "ฟิสิกส์", target: "rktoe", val: 4.0 },
+          { index: 6, source: "ฟิสิกส์", target: "rptioeto", val: 3.0 },
+          { index: 7, source: "ฟิสิกส์", target: "gdfkgpofgkdfpo", val: 4.0 },
+          { index: 8, source: "ฟิสิกส์", target: "kgdpofgkdfo", val: 2.0 },
+          { index: 9, source: "ฟิสิกส์", target: "bgokfbgipo", val: 1.0 },
+          { index: 10, source: "ฟิสิกส์", target: "sdfksdpof", val: 1.0 },
+          { index: 11, source: "ฟิสิกส์", target: "fgdfgo", val: 4.0 },
+          { index: 12, source: "ฟิสิกส์", target: "fdgkdfo", val: 3.0 },
+          { index: 13, source: "ฟิสิกส์", target: "fgdfgo", val: 0.0 },
+          { index: 14, source: "เคมี", target: "วิศวะ", val: 2.0 },
+          { index: 15, source: "เคมี", target: "หมอ", val: 4.0 },
+          { index: 16, source: "เคมี", target: "นักบัญชี", val: 2.0 },
+          { index: 17, source: "เคมี", target: "ครู", val: 4.0 },
+          { index: 18, source: "เคมี", target: "นักเขียน", val: 3.0 },
+          { index: 19, source: "เคมี", target: "rktoe", val: 2.0 },
+          { index: 20, source: "เคมี", target: "rptioeto", val: 0.0 },
+          { index: 21, source: "เคมี", target: "gdfkgpofgkdfpo", val: 0.0 },
+          { index: 22, source: "เคมี", target: "kgdpofgkdfo", val: 2.0 },
+          { index: 23, source: "เคมี", target: "bgokfbgipo", val: 4.0 },
+          { index: 24, source: "เคมี", target: "sdfksdpof", val: 3.0 },
+          { index: 25, source: "เคมี", target: "fgdfgo", val: 1.0 },
+          { index: 26, source: "เคมี", target: "fdgkdfo", val: 4.0 },
+          { index: 27, source: "เคมี", target: "fgdfgo", val: 4.0 },
+          { index: 28, source: "ชีวะ", target: "วิศวะ", val: 2.0 },
+          { index: 29, source: "ชีวะ", target: "หมอ", val: 2.0 },
+          { index: 30, source: "ชีวะ", target: "นักบัญชี", val: 0.0 },
+          { index: 31, source: "ชีวะ", target: "ครู", val: 4.0 },
+          { index: 32, source: "ชีวะ", target: "นักเขียน", val: 1.0 },
+          { index: 33, source: "ชีวะ", target: "rktoe", val: 0.0 },
+          { index: 34, source: "ชีวะ", target: "rptioeto", val: 3.0 },
+          { index: 35, source: "ชีวะ", target: "gdfkgpofgkdfpo", val: 4.0 },
+          { index: 36, source: "ชีวะ", target: "kgdpofgkdfo", val: 2.0 },
+          { index: 37, source: "ชีวะ", target: "bgokfbgipo", val: 1.0 },
+          { index: 38, source: "ชีวะ", target: "sdfksdpof", val: 3.0 },
+          { index: 39, source: "ชีวะ", target: "fgdfgo", val: 3.0 },
+          { index: 40, source: "ชีวะ", target: "fdgkdfo", val: 3.0 },
+          { index: 41, source: "ชีวะ", target: "fgdfgo", val: 1.0 },
+          { index: 42, source: "เลข", target: "วิศวะ", val: 3.0 },
+          { index: 43, source: "เลข", target: "หมอ", val: 3.0 },
+          { index: 44, source: "เลข", target: "นักบัญชี", val: 2.0 },
+          { index: 45, source: "เลข", target: "ครู", val: 4.0 },
+          { index: 46, source: "เลข", target: "นักเขียน", val: 1.0 },
+          { index: 47, source: "เลข", target: "rktoe", val: 0.0 },
+          { index: 48, source: "เลข", target: "rptioeto", val: 2.0 },
+          { index: 49, source: "เลข", target: "gdfkgpofgkdfpo", val: 1.0 },
+          { index: 50, source: "เลข", target: "kgdpofgkdfo", val: 2.0 },
+          { index: 51, source: "เลข", target: "bgokfbgipo", val: 0.0 },
+          { index: 52, source: "เลข", target: "sdfksdpof", val: 0.0 },
+          { index: 53, source: "เลข", target: "fgdfgo", val: 2.0 },
+          { index: 54, source: "เลข", target: "fdgkdfo", val: 0.0 },
+          { index: 55, source: "เลข", target: "fgdfgo", val: 1.0 },
+          { index: 56, source: "สังคม", target: "วิศวะ", val: 4.0 },
+          { index: 57, source: "สังคม", target: "หมอ", val: 0.0 },
+          { index: 58, source: "สังคม", target: "นักบัญชี", val: 4.0 },
+          { index: 59, source: "สังคม", target: "ครู", val: 3.0 },
+          { index: 60, source: "สังคม", target: "นักเขียน", val: 0.0 },
+          { index: 61, source: "สังคม", target: "rktoe", val: 0.0 },
+          { index: 62, source: "สังคม", target: "rptioeto", val: 1.0 },
+          { index: 63, source: "สังคม", target: "gdfkgpofgkdfpo", val: 1.0 },
+          { index: 64, source: "สังคม", target: "kgdpofgkdfo", val: 2.0 },
+          { index: 65, source: "สังคม", target: "bgokfbgipo", val: 3.0 },
+          { index: 66, source: "สังคม", target: "sdfksdpof", val: 1.0 },
+          { index: 67, source: "สังคม", target: "fgdfgo", val: 3.0 },
+          { index: 68, source: "สังคม", target: "fdgkdfo", val: 0.0 },
+          { index: 69, source: "สังคม", target: "fgdfgo", val: 2.0 },
+          { index: 70, source: "ไทย", target: "วิศวะ", val: 4.0 },
+          { index: 71, source: "ไทย", target: "หมอ", val: 3.0 },
+          { index: 72, source: "ไทย", target: "นักบัญชี", val: 4.0 },
+          { index: 73, source: "ไทย", target: "ครู", val: 2.0 },
+          { index: 74, source: "ไทย", target: "นักเขียน", val: 4.0 },
+          { index: 75, source: "ไทย", target: "rktoe", val: 4.0 },
+          { index: 76, source: "ไทย", target: "rptioeto", val: 2.0 },
+          { index: 77, source: "ไทย", target: "gdfkgpofgkdfpo", val: 1.0 },
+          { index: 78, source: "ไทย", target: "kgdpofgkdfo", val: 2.0 },
+          { index: 79, source: "ไทย", target: "bgokfbgipo", val: 2.0 },
+          { index: 80, source: "ไทย", target: "sdfksdpof", val: 2.0 },
+          { index: 81, source: "ไทย", target: "fgdfgo", val: 1.0 },
+          { index: 82, source: "ไทย", target: "fdgkdfo", val: 4.0 },
+          { index: 83, source: "ไทย", target: "fgdfgo", val: 3.0 },
+          { index: 84, source: "English", target: "วิศวะ", val: 2.0 },
+          { index: 85, source: "English", target: "หมอ", val: 4.0 },
+          { index: 86, source: "English", target: "นักบัญชี", val: 0.0 },
+          { index: 87, source: "English", target: "ครู", val: 4.0 },
+          { index: 88, source: "English", target: "นักเขียน", val: 3.0 },
+          { index: 89, source: "English", target: "rktoe", val: 2.0 },
+          { index: 90, source: "English", target: "rptioeto", val: 1.0 },
+          { index: 91, source: "English", target: "gdfkgpofgkdfpo", val: 1.0 },
+          { index: 92, source: "English", target: "kgdpofgkdfo", val: 0.0 },
+          { index: 93, source: "English", target: "bgokfbgipo", val: 4.0 },
+          { index: 94, source: "English", target: "sdfksdpof", val: 3.0 },
+          { index: 95, source: "English", target: "fgdfgo", val: 3.0 },
+          { index: 96, source: "English", target: "fdgkdfo", val: 0.0 },
+          { index: 97, source: "English", target: "fgdfgo", val: 1.0 },
+          { index: 98, source: "เรียนไปทำไม", target: "ฟิสิกส์", val: 1.0 },
+          { index: 99, source: "เรียนไปทำไม", target: "เคมี", val: 1.0 },
+          { index: 100, source: "เรียนไปทำไม", target: "ชีวะ", val: 1.0 },
+          { index: 101, source: "เรียนไปทำไม", target: "เลข", val: 1.0 },
+          { index: 102, source: "เรียนไปทำไม", target: "สังคม", val: 1.0 },
+          { index: 103, source: "เรียนไปทำไม", target: "ไทย", val: 1.0 },
+          { index: 104, source: "เรียนไปทำไม", target: "English", val: 1.0 }
+        ]
+      })
+      .dagMode("td")
+      .dagLevelDistance(200)
+      .nodeAutoColorBy("group")
+
+      .nodeThreeObject(node => {
+        // use a sphere as a drag handle
+        const obj = new THREE.Mesh(
+          new THREE.SphereGeometry(10),
+          new THREE.MeshBasicMaterial({
+            depthWrite: false,
+            transparent: true,
+            opacity: 0
+          })
+        );
+        // add text sprite as child
+        const sprite = new SpriteText(node.id);
+        sprite.color = node.color;
+        sprite.textHeight = node.val;
+        obj.add(sprite);
+        return obj;
+      })
+      .linkWidth(link => link.val);
+    // Spread nodes a little wider
+    Graph.d3Force("charge").strength(-150);
+  </script>
+</body>
